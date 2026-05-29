@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MindBridge Caregiver Portal — Monitor active routines, configure medication triggers, view safety checks, and receive real-time dementia patient alerts.">
+  <title>MindBridge — Caregiver Command Portal</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="caregiver.css">
+</head>
+<body>
+
+  <!-- ===== FLOATING ORBS ===== -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- ===== CAREGIVER NAVBAR ===== -->
+  <nav class="navbar caregiver-nav">
+    <div class="nav-logo">
+      <div class="logo-icon" style="background: linear-gradient(135deg, var(--teal), var(--primary))">👨‍⚕️</div>
+      <span>MindBridge Caregiver</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Patient Dashboard</a></li>
+      <li><a href="assistant.html">AI Assistant</a></li>
+      <li><a href="caregiver.html" class="active">Caregiver Portal</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== PORTAL WRAPPER ===== -->
+  <main class="caregiver-container">
+    
+    <!-- SYSTEM SUMMARY HEADER -->
+    <header class="portal-header glass-card">
+      <div class="patient-profile-summary">
+        <div class="patient-large-avatar">👵</div>
+        <div class="patient-text">
+          <div class="profile-title">
+            <h1>Dorothy Miller</h1>
+            <span class="status-dot green"></span>
+            <span class="status-label">Active Now</span>
+          </div>
+          <p>Age: 79 • Diagnosis: Stage 2 Alzheimer's • Primary Caregiver: Sarah Thompson</p>
+        </div>
+      </div>
+      <div class="connection-stats">
+        <div class="c-stat">
+          <span class="c-num">98%</span>
+          <span class="c-lbl">Routine Score</span>
+        </div>
+        <div class="c-stat">
+          <span class="c-num green">0</span>
+          <span class="c-lbl">Active Alerts</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN TWO-COLUMN DASHBOARD -->
+    <div class="caregiver-grid">
+      
+      <!-- LEFT COLUMN: ALERTS & REAL-TIME TRACKING -->
+      <section class="cg-left">
+        
+        <!-- REAL-TIME TRACKING AND NOTIFICATIONS -->
+        <div class="safety-card glass-card">
+          <div class="card-header">
+            <h2>🚨 Safety Alerts & Safety Checks</h2>
+            <button class="btn-clear-alerts" id="clear-alerts-btn">Clear All</button>
+          </div>
+          <div class="alerts-list" id="alerts-container">
+            <!-- Normal status -->
+            <div class="alert-status-item green-state" id="no-alerts-msg">
+              <span class="alert-emoji">☀️</span>
+              <div>
+                <h3>All systems are normal</h3>
+                <p>Dorothy is currently relaxing at home. No abnormalities detected.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ROUTINE PROGRESS STATUS -->
+        <div class="progress-card glass-card">
+          <h2>📅 Routine Checklist Progression</h2>
+          <p class="section-desc">Completed vs. remaining daily checklist activities.</p>
+          
+          <div class="checklist-items">
+            <div class="checklist-row completed">
+              <span class="chk-icon">✓</span>
+              <div>
+                <h3>Morning Stretch</h3>
+                <p>Done at 7:05 AM (Scheduled: 7:00 AM)</p>
+              </div>
+            </div>
+            <div class="checklist-row completed">
+              <span class="chk-icon">✓</span>
+              <div>
+                <h3>Aricept Medication</h3>
+                <p>Taken at 8:02 AM (Scheduled: 8:00 AM)</p>
+              </div>
+            </div>
+            <div class="checklist-row pending" id="chk-lunch">
+              <span class="chk-icon">🔔</span>
+              <div>
+                <h3>Afternoon Medication</h3>
+                <p>Scheduled: 1:00 PM • Pending confirmation</p>
+              </div>
+            </div>
+            <div class="checklist-row upcoming">
+              <span class="chk-icon">⏰</span>
+              <div>
+                <h3>Doctor Checkup Visit</h3>
+                <p>Scheduled: 3:00 PM</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOCK DEMO ACTION SIMULATOR -->
+        <div class="simulator-card glass-card">
+          <h2>🔬 Interactive Care Simulator</h2>
+          <p class="section-desc">Simulate patient actions to test live notifications and real-time response checks.</p>
+          <div class="simulator-actions">
+            <button class="btn btn-secondary sim-btn" id="sim-missed-med">⚠️ Simulate Missed Med</button>
+            <button class="btn btn-secondary sim-btn" id="sim-wandering">🚨 Simulate Unusual Behavior</button>
+            <button class="btn btn-secondary sim-btn" id="sim-sos-alert">🚨 Simulate Patient Call SOS</button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: SCHEDULER & FAMILY REGISTRY -->
+      <section class="cg-right">
+        
+        <!-- MEDICATION & ROUTINE SETUP FORM -->
+        <div class="config-card glass-card">
+          <h2>📝 Configure Patient Routine</h2>
+          <p class="section-desc">Add new medications, appointments, or custom alerts.</p>
+          
+          <form class="config-form" id="routine-form" onsubmit="return false;">
+            <div class="form-group">
+              <label for="routine-type">Category</label>
+              <select id="routine-type">
+                <option value="med">💊 Medication Reminder</option>
+                <option value="apt">🏥 Doctor Appointment</option>
+                <option value="act">🏃 Physical Activity</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="routine-name">Title / Description</label>
+              <input type="text" id="routine-name" placeholder="e.g. Namenda Pills, Walk in Garden" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="routine-time">Trigger Time</label>
+                <input type="time" id="routine-time" required>
+              </div>
+              <div class="form-group">
+                <label for="routine-dosage">Dosage (optional)</label>
+                <input type="text" id="routine-dosage" placeholder="e.g. 10mg, 1 Pill">
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit-routine" id="add-routine-btn">Save Routine Activity</button>
+          </form>
+        </div>
+
+        <!-- FAMILY REGISTRY LIST -->
+        <div class="family-card glass-card">
+          <h2>👨‍👩‍👧 Family Circle Registry</h2>
+          <p class="section-desc font-smaller">People recognized on Dorothy's Familiar Faces dashboard pane.</p>
+          
+          <div class="family-list" id="family-registry-container">
+            <!-- Family 1 -->
+            <div class="family-item">
+              <div class="fam-avatar">👩‍🦰</div>
+              <div class="fam-details">
+                <h3>Sarah Thompson</h3>
+                <p>Relation: <strong>Daughter</strong> • Primary</p>
+              </div>
+              <span class="fam-phone">📞 (555) 019-2834</span>
+            </div>
+            <!-- Family 2 -->
+            <div class="family-item">
+              <div class="fam-avatar">🧑</div>
+              <div class="fam-details">
+                <h3>James Thompson</h3>
+                <p>Relation: <strong>Grandson</strong></p>
+              </div>
+              <span class="fam-phone">📞 (555) 019-9944</span>
+            </div>
+          </div>
+
+          <!-- Add new family input -->
+          <div class="add-family-box">
+            <input type="text" id="fam-new-name" placeholder="Name">
+            <input type="text" id="fam-new-relation" placeholder="Relation (e.g. Nephew)">
+            <button class="btn btn-teal" id="add-family-btn">+</button>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <script src="caregiver.js"></script>
+</body>
+</html>

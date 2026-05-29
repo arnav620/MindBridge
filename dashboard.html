@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MindBridge Patient Dashboard — Easy-to-use routine assistance, reminders, familiar faces, and emergency support for dementia patients.">
+  <title>MindBridge — Patient Home</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body class="patient-body">
+
+  <!-- ===== FLOATING ORBS ===== -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <!-- ===== PATIENT NAVBAR ===== -->
+  <nav class="navbar patient-nav">
+    <div class="nav-logo">
+      <div class="logo-icon">🧠</div>
+      <span>MindBridge Care</span>
+    </div>
+    <div class="accessibility-controls">
+      <button class="access-btn" id="btn-increase-text" data-tooltip="Make Text Bigger">🔍 Aa+</button>
+      <button class="access-btn" id="btn-tts-toggle" data-tooltip="Listen to Screen">🔊 Speak</button>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html" class="active">Patient Dashboard</a></li>
+      <li><a href="assistant.html">AI Chat</a></li>
+      <li><a href="caregiver.html">Caregivers</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="patient-container">
+    
+    <!-- WELCOME & GREETING HEADER -->
+    <header class="patient-header glass-card">
+      <div class="header-left">
+        <h1 class="welcome-text" id="welcome-message">Good Morning, Dorothy 🌸</h1>
+        <p class="current-date" id="current-date-time">Thursday, 29 May 2026</p>
+      </div>
+      <div class="header-right">
+        <div class="weather-widget">
+          <span class="weather-icon">☀️</span>
+          <span class="weather-temp">24°C</span>
+          <span class="weather-desc">Sunny & Warm</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- TWO-COLUMN LAYOUT -->
+    <div class="dashboard-grid">
+      
+      <!-- LEFT COLUMN: ROUTINES & MEDICATIONS -->
+      <section class="left-column">
+        
+        <!-- EMERGENCIES AND URGENT WIDGET -->
+        <div class="emergency-card glass-card">
+          <div class="emergency-info">
+            <h3>Need Help or Feel Lost?</h3>
+            <p>Press the red button below. Your daughter Sarah will be notified immediately to call you.</p>
+          </div>
+          <button class="btn-emergency pulse" id="sos-btn">
+            <span class="sos-icon">📞</span>
+            <span class="sos-text">Call Family</span>
+          </button>
+        </div>
+
+        <!-- MEDICATION REMINDER BOARD -->
+        <div class="meds-card glass-card">
+          <div class="card-header">
+            <h2>💊 Today's Medications</h2>
+            <span class="tag tag-accent" id="meds-count-tag">1 Left Today</span>
+          </div>
+          <div class="meds-list" id="meds-container">
+            <!-- Med Item 1 -->
+            <div class="med-item done" data-id="med-1">
+              <div class="med-status-icon">✓</div>
+              <div class="med-details">
+                <h3>Aricept (Donepezil)</h3>
+                <p>10 mg • 1 Pill • Morning (8:00 AM)</p>
+              </div>
+              <button class="med-action-btn done-state" disabled>Taken</button>
+            </div>
+            <!-- Med Item 2 -->
+            <div class="med-item active" data-id="med-2">
+              <div class="med-status-icon-pending">🔔</div>
+              <div class="med-details">
+                <h3>Namenda (Memantine)</h3>
+                <p>10 mg • 1 Pill • Afternoon (1:00 PM)</p>
+              </div>
+              <button class="med-action-btn take-btn" id="take-med-2">I took it</button>
+            </div>
+            <!-- Med Item 3 -->
+            <div class="med-item upcoming" data-id="med-3">
+              <div class="med-status-icon-upcoming">⏰</div>
+              <div class="med-details">
+                <h3>Multivitamin</h3>
+                <p>1 Pill • Night (8:00 PM)</p>
+              </div>
+              <button class="med-action-btn" disabled>Upcoming</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- MOOD CHECK-IN -->
+        <div class="mood-card glass-card">
+          <h2>How are you feeling right now?</h2>
+          <div class="mood-options">
+            <button class="mood-btn" data-mood="happy" id="mood-happy">
+              <span class="mood-emoji">😊</span>
+              <span class="mood-name">Happy</span>
+            </button>
+            <button class="mood-btn" data-mood="calm" id="mood-calm">
+              <span class="mood-emoji">😌</span>
+              <span class="mood-name">Calm</span>
+            </button>
+            <button class="mood-btn" data-mood="confused" id="mood-confused">
+              <span class="mood-emoji">😕</span>
+              <span class="mood-name">Confused</span>
+            </button>
+            <button class="mood-btn" data-mood="sad" id="mood-sad">
+              <span class="mood-emoji">😔</span>
+              <span class="mood-name">Lonely</span>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT COLUMN: FACES & CONVERSATION -->
+      <section class="right-column">
+        
+        <!-- FAMILIAR FACES PANEL -->
+        <div class="faces-card glass-card">
+          <div class="card-header">
+            <h2>👨‍👩‍👧‍👦 Your Family & Friends</h2>
+            <p>Click on any photo to remember who they are and see a message from them!</p>
+          </div>
+          
+          <div class="faces-carousel">
+            <!-- Family Card 1 -->
+            <div class="face-profile-card" data-name="Sarah" data-relation="Daughter" data-message="Dorothy's eldest daughter. She visited yesterday and brought apple pie. She loves gardening with you!" data-phone="+1 (555) 019-2834" id="face-sarah">
+              <div class="face-avatar" style="background: linear-gradient(135deg, #FFB7B2, #FFDAC1)">👩‍🦰</div>
+              <div class="face-info">
+                <h3>Sarah</h3>
+                <span class="relation-tag tag tag-primary">Daughter</span>
+              </div>
+            </div>
+            <!-- Family Card 2 -->
+            <div class="face-profile-card" data-name="James" data-relation="Grandson" data-message="Dorothy's grandkid. He is in high school and plays basketball. He always tells funny jokes!" data-phone="+1 (555) 019-9944" id="face-james">
+              <div class="face-avatar" style="background: linear-gradient(135deg, #BFFCC6, #E8FFD9)">🧑</div>
+              <div class="face-info">
+                <h3>James</h3>
+                <span class="relation-tag tag tag-teal">Grandson</span>
+              </div>
+            </div>
+            <!-- Family Card 3 -->
+            <div class="face-profile-card" data-name="Dr. Patel" data-relation="Your Doctor" data-message="Dorothy's caring doctor who helps with health checks. He is very friendly and gentle." data-phone="+1 (555) 019-3388" id="face-doctor">
+              <div class="face-avatar" style="background: linear-gradient(135deg, #D6C7FF, #EAF4FF)">👨‍⚕️</div>
+              <div class="face-info">
+                <h3>Dr. Patel</h3>
+                <span class="relation-tag tag tag-accent">Doctor</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Active Person Detail Viewer -->
+          <div class="active-face-viewer hidden" id="face-viewer-box">
+            <button class="close-viewer-btn" id="close-face-viewer">×</button>
+            <div class="viewer-layout">
+              <div class="viewer-avatar-box" id="viewer-avatar">👩‍🦰</div>
+              <div class="viewer-text">
+                <h3 id="viewer-name">Sarah</h3>
+                <span class="relation-tag tag tag-primary" id="viewer-relation">Daughter</span>
+                <p class="relationship-desc" id="viewer-message">Dorothy's eldest daughter. She visited yesterday and brought apple pie.</p>
+                <div class="viewer-actions">
+                  <button class="btn btn-teal btn-call" id="viewer-call-btn">📞 Call Sarah</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PATIENT INTERACTIVE TIMELINE / DAILY SCHEDULE -->
+        <div class="routine-card glass-card">
+          <h2>📅 Today's Easy Schedule</h2>
+          <div class="timeline">
+            <div class="timeline-step completed">
+              <div class="time">8:00 AM</div>
+              <div class="step-circle">✓</div>
+              <div class="step-content">
+                <h3>Breakfast Time</h3>
+                <p>Have oatmeal with berries and a glass of fresh water.</p>
+              </div>
+            </div>
+            <div class="timeline-step current">
+              <div class="time">11:00 AM</div>
+              <div class="step-circle">⭐</div>
+              <div class="step-content">
+                <h3>Relax & Have Tea</h3>
+                <p>Sit in your favorite armchair, relax, and talk with the AI assistant.</p>
+                <a href="assistant.html" class="btn btn-primary btn-sm chat-prompt-btn" style="margin-top: 8px;">💬 Chat with AI</a>
+              </div>
+            </div>
+            <div class="timeline-step upcoming">
+              <div class="time">1:00 PM</div>
+              <div class="step-circle"></div>
+              <div class="step-content">
+                <h3>Light Lunch</h3>
+                <p>Tomato soup and a healthy salad prepared for you.</p>
+              </div>
+            </div>
+            <div class="timeline-step upcoming">
+              <div class="time">3:00 PM</div>
+              <div class="step-circle"></div>
+              <div class="step-content">
+                <h3>Doctor Checkup</h3>
+                <p>Dr. Patel will visit for a regular, gentle health check.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- SOS ACTIVE OVERLAY MODAL -->
+  <div class="sos-modal-overlay hidden" id="sos-modal">
+    <div class="sos-modal glass-card">
+      <div class="sos-alert-icon pulse">🚨</div>
+      <h2>Notifying Sarah...</h2>
+      <p>Please stay right where you are. Sarah has been alerted and will call you back in a few seconds.</p>
+      <div class="countdown-spinner" id="sos-countdown">10</div>
+      <button class="btn btn-secondary" id="cancel-sos">Cancel Alert</button>
+    </div>
+  </div>
+
+  <script src="dashboard.js"></script>
+</body>
+</html>

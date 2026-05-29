@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MindBridge Compassionate AI Companion — Speak with a gentle AI helper designed to listen, guide routines, and comfort dementia patients.">
+  <title>MindBridge — Speak with AI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assistant.css">
+</head>
+<body class="patient-body">
+
+  <!-- ===== FLOATING ORBS ===== -->
+  <div class="orb orb-1"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ===== PATIENT NAVBAR ===== -->
+  <nav class="navbar patient-nav">
+    <div class="nav-logo">
+      <div class="logo-icon">🧠</div>
+      <span>MindBridge Assistant</span>
+    </div>
+    <div class="accessibility-controls">
+      <button class="access-btn" id="btn-increase-text" data-tooltip="Make Text Bigger">🔍 Aa+</button>
+      <button class="access-btn" id="btn-audio-mute" data-tooltip="Mute Speech Responses">🔊 Speak Aloud</button>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dashboard.html">Patient Dashboard</a></li>
+      <li><a href="assistant.html" class="active">AI Chat</a></li>
+      <li><a href="caregiver.html">Caregivers</a></li>
+    </ul>
+  </nav>
+
+  <!-- ===== CHAT AREA ===== -->
+  <main class="chat-container">
+    
+    <!-- LEFT SIDEBAR: TOPIC HELPERS / QUICK ACTIONS -->
+    <aside class="chat-sidebar glass-card">
+      <h2>💡 Friendly Prompts</h2>
+      <p class="sidebar-help">Tap any block below, and I will happily answer or talk about it with you!</p>
+      
+      <div class="prompt-buttons">
+        <button class="prompt-btn" data-text="What day is it today?" id="q-date">
+          <span class="p-icon">📅</span>
+          <div>
+            <h3>What day is it?</h3>
+            <p>Check the date & time</p>
+          </div>
+        </button>
+        <button class="prompt-btn" data-text="I feel a bit lonely." id="q-lonely">
+          <span class="p-icon">💙</span>
+          <div>
+            <h3>I feel lonely</h3>
+            <p>Get gentle comfort</p>
+          </div>
+        </button>
+        <button class="prompt-btn" data-text="Tell me a happy short story!" id="q-story">
+          <span class="p-icon">📖</span>
+          <div>
+            <h3>Tell me a story</h3>
+            <p>Hear a relaxing tale</p>
+          </div>
+        </button>
+        <button class="prompt-btn" data-text="Help me do a breathing exercise to relax." id="q-breathe">
+          <span class="p-icon">🧘</span>
+          <div>
+            <h3>Help me relax</h3>
+            <p>Simple calm breathing</p>
+          </div>
+        </button>
+        <button class="prompt-btn" data-text="Who are my family members again?" id="q-family">
+          <span class="p-icon">👨‍👩‍👧</span>
+          <div>
+            <h3>Who is my family?</h3>
+            <p>Remember loved ones</p>
+          </div>
+        </button>
+      </div>
+
+      <div class="sos-sidebar-widget">
+        <a href="dashboard.html" class="btn btn-secondary back-to-dash-btn">🏠 Go Back to Dashboard</a>
+      </div>
+    </aside>
+
+    <!-- RIGHT CHAT WINDOW -->
+    <section class="chat-window-wrapper">
+      <div class="chat-header glass-card">
+        <div class="helper-info">
+          <div class="helper-avatar pulse">🤖</div>
+          <div>
+            <h2>MindBridge AI Companion</h2>
+            <p><span class="status-dot green"></span> Active • Online Support Helper</p>
+          </div>
+        </div>
+        <div class="audio-wave hidden" id="voice-animation">
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+          <span class="stroke"></span>
+        </div>
+      </div>
+
+      <!-- CHAT MESSAGE LOG -->
+      <div class="chat-messages-box glass-card" id="chat-messages">
+        <!-- AI Introductory message -->
+        <div class="message ai-msg">
+          <div class="msg-avatar">🤖</div>
+          <div class="msg-content-wrapper">
+            <div class="msg-bubble">
+              Hello Dorothy! 🌸 I am your MindBridge AI Companion. I am here to help you remember your routines, talk about your lovely family, or just chat. How can I bring a smile to your face today?
+            </div>
+            <div class="msg-meta">
+              <button class="speak-msg-btn" data-tooltip="Listen to Message">🔊 Play Audio</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAT INPUT AREA -->
+      <div class="chat-input-bar glass-card">
+        <textarea class="chat-textarea" id="chat-input-text" placeholder="Type a message here or click a prompt on the left..." rows="1"></textarea>
+        
+        <div class="input-actions">
+          <button class="mic-btn" id="voice-mic-btn" data-tooltip="Talk with Voice">
+            <span class="mic-icon">🎤</span>
+            <span class="mic-label">Hold & Speak</span>
+          </button>
+          
+          <button class="send-chat-btn btn btn-primary" id="send-btn">
+            <span>Send</span>
+            <span>➔</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assistant.js"></script>
+</body>
+</html>
